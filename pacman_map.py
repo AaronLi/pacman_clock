@@ -56,38 +56,38 @@ class PacmanMap:
         food_pellets = self.food.union(self.power_pellets)
         for x, y in food_pellets:
             if (x, y) in self.food:
-                draw.circle(out_surface, (255, 255, 255), (x*self.DRAW_SCALE+self.DRAW_SCALE//2, y*self.DRAW_SCALE + self.DRAW_SCALE+self.DRAW_SCALE//2), 2)
+                draw.circle(out_surface, (255, 255, 255), (x*self.DRAW_SCALE+self.DRAW_SCALE//2, y*self.DRAW_SCALE + self.DRAW_SCALE+self.DRAW_SCALE//2), 1)
             else:
                 draw.circle(out_surface, (255, 255, 255),
                             (x * self.DRAW_SCALE + self.DRAW_SCALE // 2, y * self.DRAW_SCALE+ self.DRAW_SCALE + self.DRAW_SCALE // 2), 4)
 
             if (x, y-1) not in food_pellets:
                 if (x-1, y-1) not in food_pellets:
-                    draw.line(out_surface, (0, 0, 255), (x*self.DRAW_SCALE+self.DRAW_SCALE//2, y*self.DRAW_SCALE + self.DRAW_SCALE-self.DRAW_SCALE//2), (x*self.DRAW_SCALE-self.DRAW_SCALE//2, y*self.DRAW_SCALE + self.DRAW_SCALE-self.DRAW_SCALE//2), 4)
+                    draw.line(out_surface, (0, 0, 255), (x*self.DRAW_SCALE+self.DRAW_SCALE//2, y*self.DRAW_SCALE + self.DRAW_SCALE-self.DRAW_SCALE//2), (x*self.DRAW_SCALE-self.DRAW_SCALE//2, y*self.DRAW_SCALE + self.DRAW_SCALE-self.DRAW_SCALE//2), 1)
                 if (x+1, y-1) not in food_pellets:
-                    draw.line(out_surface, (0, 0, 255), (x*self.DRAW_SCALE+self.DRAW_SCALE//2, y*self.DRAW_SCALE + self.DRAW_SCALE-self.DRAW_SCALE//2), (x*self.DRAW_SCALE+self.DRAW_SCALE, y*self.DRAW_SCALE + self.DRAW_SCALE-self.DRAW_SCALE//2), 4)
+                    draw.line(out_surface, (0, 0, 255), (x*self.DRAW_SCALE+self.DRAW_SCALE//2, y*self.DRAW_SCALE + self.DRAW_SCALE-self.DRAW_SCALE//2), (x*self.DRAW_SCALE+self.DRAW_SCALE+ self.DRAW_SCALE//2, y*self.DRAW_SCALE + self.DRAW_SCALE-self.DRAW_SCALE//2), 1)
             if (x, y+1) not in food_pellets:
                 if (x-1, y+1) not in food_pellets:
-                    draw.line(out_surface, (0, 0, 255), (x*self.DRAW_SCALE+self.DRAW_SCALE//2, y*self.DRAW_SCALE + self.DRAW_SCALE+self.DRAW_SCALE+2), (x*self.DRAW_SCALE-self.DRAW_SCALE//2, y*self.DRAW_SCALE + self.DRAW_SCALE+self.DRAW_SCALE+2), 4)
+                    draw.line(out_surface, (0, 0, 255), (x*self.DRAW_SCALE+self.DRAW_SCALE//2, y*self.DRAW_SCALE + self.DRAW_SCALE+self.DRAW_SCALE+2), (x*self.DRAW_SCALE-self.DRAW_SCALE//2, y*self.DRAW_SCALE + self.DRAW_SCALE+self.DRAW_SCALE+2), 1)
                 if (x+1, y+1) not in food_pellets:
-                    draw.line(out_surface, (0, 0, 255), (x*self.DRAW_SCALE+self.DRAW_SCALE//2, y*self.DRAW_SCALE + self.DRAW_SCALE+self.DRAW_SCALE+2), (x*self.DRAW_SCALE+self.DRAW_SCALE, y*self.DRAW_SCALE + self.DRAW_SCALE+self.DRAW_SCALE+2), 4)
+                    draw.line(out_surface, (0, 0, 255), (x*self.DRAW_SCALE+self.DRAW_SCALE//2, y*self.DRAW_SCALE + self.DRAW_SCALE+self.DRAW_SCALE+2), (x*self.DRAW_SCALE+self.DRAW_SCALE+ self.DRAW_SCALE//2, y*self.DRAW_SCALE + self.DRAW_SCALE+self.DRAW_SCALE+2), 1)
 
             if (x+1, y) not in food_pellets:
                 if (x+1, y-1) not in food_pellets:
-                    draw.line(out_surface, (0, 0, 255), (x*self.DRAW_SCALE+ self.DRAW_SCALE, y*self.DRAW_SCALE +self.DRAW_SCALE +self.DRAW_SCALE//2), (x*self.DRAW_SCALE+ self.DRAW_SCALE, y*self.DRAW_SCALE+ self.DRAW_SCALE -self.DRAW_SCALE//2), 4)
+                    draw.line(out_surface, (0, 0, 255), (x*self.DRAW_SCALE+ self.DRAW_SCALE+ self.DRAW_SCALE//2, y*self.DRAW_SCALE +self.DRAW_SCALE +self.DRAW_SCALE//2), (x*self.DRAW_SCALE+ self.DRAW_SCALE+ self.DRAW_SCALE//2, y*self.DRAW_SCALE+ self.DRAW_SCALE -self.DRAW_SCALE//2), 1)
                 if (x+1, y+1) not in food_pellets:
-                    draw.line(out_surface, (0, 0, 255), (x*self.DRAW_SCALE+ self.DRAW_SCALE, y*self.DRAW_SCALE +self.DRAW_SCALE +self.DRAW_SCALE//2), (x*self.DRAW_SCALE+ self.DRAW_SCALE, y*self.DRAW_SCALE+ self.DRAW_SCALE +self.DRAW_SCALE), 4)
+                    draw.line(out_surface, (0, 0, 255), (x*self.DRAW_SCALE+ self.DRAW_SCALE+ self.DRAW_SCALE//2, y*self.DRAW_SCALE +self.DRAW_SCALE +self.DRAW_SCALE//2), (x*self.DRAW_SCALE+ self.DRAW_SCALE+ self.DRAW_SCALE//2, y*self.DRAW_SCALE+ self.DRAW_SCALE +self.DRAW_SCALE), 1)
             if (x - 1, y) not in food_pellets:
                 if (x - 1, y - 1) not in food_pellets:
                     draw.line(out_surface, (0, 0, 255), (x * self.DRAW_SCALE - self.DRAW_SCALE + self.DRAW_SCALE//2,
                                                          y * self.DRAW_SCALE + self.DRAW_SCALE + self.DRAW_SCALE // 2),
                               (x * self.DRAW_SCALE - self.DRAW_SCALE + self.DRAW_SCALE//2,
-                               y * self.DRAW_SCALE + self.DRAW_SCALE - self.DRAW_SCALE // 2), 4)
+                               y * self.DRAW_SCALE + self.DRAW_SCALE - self.DRAW_SCALE // 2), 1)
                 if (x - 1, y + 1) not in food_pellets:
                     draw.line(out_surface, (0, 0, 255), (x * self.DRAW_SCALE - self.DRAW_SCALE + self.DRAW_SCALE//2,
                                                          y * self.DRAW_SCALE + self.DRAW_SCALE + self.DRAW_SCALE // 2),
                               (x * self.DRAW_SCALE - self.DRAW_SCALE + self.DRAW_SCALE//2,
-                               y * self.DRAW_SCALE + self.DRAW_SCALE + self.DRAW_SCALE), 4)
+                               y * self.DRAW_SCALE + self.DRAW_SCALE + self.DRAW_SCALE), 1)
 
         #draw.circle(out_surface, (255, 0, 0), (self.start[0] * self.DRAW_SCALE+self.DRAW_SCALE//2, self.start[1] * self.DRAW_SCALE+self.DRAW_SCALE//2), 2)
         #draw.circle(out_surface, (0, 0, 255), (self.end[0] * self.DRAW_SCALE+self.DRAW_SCALE//2, self.end[1] * self.DRAW_SCALE+self.DRAW_SCALE//2), 2)

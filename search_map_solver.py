@@ -11,6 +11,7 @@ from pacman_map import PacmanMap
 class SearchNode:
     priority: int
     score: int
+    distance: int
     position: Tuple[int, int] = field(compare=False)
     path: List[Tuple[int, int]] = field(compare=False)
     food: set = field(compare=False)
@@ -73,7 +74,7 @@ class ClockSolver:
 
     def solve(self):
         search_queue = []
-        heapq.heappush(search_queue, SearchNode(0, 0, self.map.start, ((self.map.start, self.map.start),), self.map.food, self.map.power_pellets))
+        heapq.heappush(search_queue, SearchNode(0, 0, 0, self.map.start, ((self.map.start, self.map.start),), self.map.food, self.map.power_pellets))
 
         seen_boards = set()
         while search_queue:
@@ -90,8 +91,10 @@ class ClockSolver:
             for adjacent in shuffled_adjacency:
                 new_node_food = set(current_node.food)
                 new_node_power_pellets = set(current_node.power_pellets)
-                new_score = current_node.score + 1
+                new_score = current_node.score
                 new_path = current_node.path + ((current_node.position, adjacent),)
+                # add manhattan distance to the score
+                new_distance = current_node.distance + abs(adjacent[0] - current_node.position[0]) + abs(adjacent[1] - current_node.position[1])
                 should_avoid = False
                 power_pellet = False
                 for step in self.get_points(current_node.position, adjacent):
@@ -107,12 +110,12 @@ class ClockSolver:
                 if should_avoid:
                     continue
                 elif power_pellet:
-                    new_score -= 30
+                    new_score -= 20
 
                 board_data = (tuple(new_node_food), tuple(new_node_power_pellets), adjacent)
                 if board_data in seen_boards:
                     continue
                 seen_boards.add(board_data)
-                new_search_node = SearchNode(len(new_path) + new_score, new_score, adjacent, new_path, new_node_food, new_node_power_pellets)
+                new_search_node = SearchNode(new_distance + new_score, new_score, new_distance, adjacent, new_path, new_node_food, new_node_power_pellets)
                 heapq.heappush(search_queue, new_search_node)
 
